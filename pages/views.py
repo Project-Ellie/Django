@@ -1,9 +1,5 @@
-from django.http import HttpResponse
-import logging
-
-logger = logging.getLogger(__name__)
+from django.views.generic import TemplateView
 
 
-def home_page_view(request):
-    logger.info("Receiving request from user %s" % request.user)
-    return HttpResponse("Hello Wolfie")
+class HomePageView(TemplateView):
+    template_name = 'home.html'
