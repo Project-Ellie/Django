@@ -25,7 +25,7 @@ SECRET_KEY = 'ipce3v$h+^bm-&qm-z#@^z5j#&n$lt0pvyhnbkp^r9$drxm$#)'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'pages.apps.PagesConfig',
+    'users.apps.UsersConfig'
 ]
 
 MIDDLEWARE = [
@@ -107,6 +108,8 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+AUTH_USER_MODEL = 'users.CustomUser'
 
 
 # Internationalization
