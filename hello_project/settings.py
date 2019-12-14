@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'pages.apps.PagesConfig',
 ]
 
 MIDDLEWARE = [
@@ -118,3 +119,45 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        # use this formatter for debugging
+        'verbose': {
+            'format': '{asctime} - {name} - {module}({lineno:d}) - {process:d}/{thread:d} - {levelname}: {message}',
+            'style': '{',
+        },
+        'simple': {
+            'format': '{asctime} - {name} - {levelname}: {message}',
+            'style': '{',
+        }
+    },
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose',
+        },
+        # 'stackdriver': {
+        #     'class': 'google.cloud.logging.handlers.CloudLoggingHandler',
+        #     'client': log_client
+        # },
+        # 'stackdriver_error_reporting': {
+        #     'level': 'ERROR',
+        #     'class': 'gcp_utils.stackdriver_logging.StackdriverErrorHandler',
+        # }
+    },
+    'loggers': {
+        # root logger
+        '': {
+            'handlers': [
+                'console',
+                # 'stackdriver'
+            ],
+            'level': 'INFO',
+            'name': os.getenv('ENVIRONMENT_NAME', "DEV")
+        },
+    },
+}
