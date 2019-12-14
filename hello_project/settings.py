@@ -46,7 +46,8 @@ INSTALLED_APPS = [
 
     # local apps
     'pages.apps.PagesConfig',
-    'users.apps.UsersConfig'
+    'users.apps.UsersConfig',
+    'books.apps.BooksConfig'
 ]
 
 LOGIN_REDIRECT_URL = 'home'
