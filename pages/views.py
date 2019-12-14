@@ -1,3 +1,9 @@
-from django.shortcuts import render
+from django.http import HttpResponse
+import logging
 
-# Create your views here.
+logger = logging.getLogger(__name__)
+
+
+def home_page_view(request):
+    logger.info("Receiving request from user %s" % request.user)
+    return HttpResponse("Hello Wolfie")
