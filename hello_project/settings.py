@@ -47,7 +47,8 @@ INSTALLED_APPS = [
     # local apps
     'pages.apps.PagesConfig',
     'users.apps.UsersConfig',
-    'books.apps.BooksConfig'
+    'books.apps.BooksConfig',
+    'orders.apps.OrdersConfig'
 ]
 
 LOGIN_REDIRECT_URL = 'home'
@@ -179,6 +180,11 @@ DEFAULT_FROM_EMAIL = 'wgiersche@gmail.com'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+STRIPE_TEST_PUBLISHABLE_KEY = os.environ.get('STRIPE_TEST_PUBLISHABLE_KEY')
+STRIPE_TEST_SECRET_KEY = os.environ.get('STRIPE_TEST_SECRET_KEY')
+
 
 LOGGING = {
     'version': 1,
