@@ -20,15 +20,17 @@ from django.urls import path, include
 from bookstore_project import settings
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin', admin.site.urls),
 
-    path('accounts/', include('allauth.urls')),
+    path('accounts', include('allauth.urls')),
 
-    path('books/', include('books.urls')),
+    path('books', include('books.urls')),
 
     path('orders', include('orders.urls')),
 
     path('api', include('api.urls')),
+
+    path('todosapi', include('todos.urls')),
 
     path('', include('pages.urls'))
     
