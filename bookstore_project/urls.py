@@ -1,4 +1,4 @@
-"""hello_project URL Configuration
+"""bookstore_project URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/2.2/topics/http/urls/
@@ -17,7 +17,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
-from hello_project import settings
+from bookstore_project import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
