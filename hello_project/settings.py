@@ -50,7 +50,8 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'books.apps.BooksConfig',
     'orders.apps.OrdersConfig',
-    'api.apps.ApiConfig'
+    'api.apps.ApiConfig',
+    'todos.apps.TodosConfig'
 ]
 
 LOGIN_REDIRECT_URL = 'home'
@@ -110,6 +111,14 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'hello_project.wsgi.application'
+
+
+# Rest Framework
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny'
+    ]
+}
 
 
 # Database
