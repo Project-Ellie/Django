@@ -3,9 +3,15 @@
 
 {% block content %}
 <div class="book-detail">
-<h4><a href="">{{ book.title }}</a></h4>
+<h3><a href="">{{ book.title }}</a></h3>
 <p>{{ book.author }}</p>
 <p>{{ book.price }}</p>
+<h4>Reviews</h4>
+<ul>
+    {% for review in book.reviews.all %}
+        <li>{{ review.review }} ({{ review.author }})</li>
+    {%  endfor %}
+</ul>
 </div>
 
 {% endblock content %}
