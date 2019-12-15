@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
 
     # Third-party
+    'rest_framework',
     'crispy_forms',
     'allauth',
     'allauth.account',
@@ -48,7 +49,8 @@ INSTALLED_APPS = [
     'pages.apps.PagesConfig',
     'users.apps.UsersConfig',
     'books.apps.BooksConfig',
-    'orders.apps.OrdersConfig'
+    'orders.apps.OrdersConfig',
+    'api.apps.ApiConfig'
 ]
 
 LOGIN_REDIRECT_URL = 'home'

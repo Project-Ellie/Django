@@ -12,9 +12,11 @@ class Book(models.Model):
         editable=False
     )
     title = models.CharField(max_length=200)
+    subtitle = models.CharField(max_length=1000, blank=True)
     author = models.CharField(max_length=200)
     price = models.DecimalField(max_digits=6, decimal_places=2)
     cover = models.ImageField(upload_to="covers/", blank=True)
+    isbn = models.CharField(max_length=13, blank=True)
 
     class Meta:
         permissions = [
