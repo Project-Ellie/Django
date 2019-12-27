@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+import logging
+
+logger = logging.getLogger(__name__)
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -24,9 +27,17 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'YOU_BETTER_SET_ENVIRONMENT_VAR
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = int(os.environ.get('DJANGO_DEBUG', 0))
+print("DEBUG is: %s" % DEBUG)
+PIPENV_DEV=int(os.environ.get('PIPENV_DEV', 0))
+print("PIPENV_DEV is: %s" % PIPENV_DEV)
+USE_SENDGRID=int(os.environ.get('USE_SENDGRID', 0))
+print("USE_SENDGRID is: %s" % USE_SENDGRID)
 
-ALLOWED_HOSTS = ['*']
-
+if DEBUG:
+    ALLOWED_HOSTS = ['*']
+else:
+    # TODO: Use host ip from the image environment
+    ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -52,8 +63,13 @@ INSTALLED_APPS = [
     'books.apps.BooksConfig',
     'orders.apps.OrdersConfig',
     'api.apps.ApiConfig',
-    'todos.apps.TodosConfig'
+    'todos.apps.TodosConfig',
+    'contracts.apps.ContractsConfig'
 ]
+
+if DEBUG:
+    INSTALLED_APPS.append('debug_toolbar')
+
 
 LOGIN_REDIRECT_URL = 'home'
 ACCOUNT_LOGOUT_REDIRECT = 'home'
@@ -73,8 +89,10 @@ AUTHENTICATION_BACKENDS = (
     'allauth.account.auth_backends.AuthenticationBackend'
 )
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-# EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
+if USE_SENDGRID:
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+else:
+    EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
 
 SENDGRID_API_KEY = os.environ.get("SENDGRID_API_KEY")
 SENDGRID_SANDBOX_MODE_IN_DEBUG = False
@@ -89,13 +107,21 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware'
 ]
+if DEBUG:
+    MIDDLEWARE.append('debug_toolbar.middleware.DebugToolbarMiddleware')
+
 APPEND_SLASH = True
 
 CORS_ORIGIN_WHITELIST = (
     'http://localhost:3000',
     'http://localhost:8000'
 )
+
+INTERNAL_IPS = [
+    '127.0.0.1',
+]
 
 ROOT_URLCONF = 'bookstore_project.urls'
 
@@ -124,6 +150,9 @@ WSGI_APPLICATION = 'bookstore_project.wsgi.application'
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.AllowAny'
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication'
     ]
 }
 
@@ -138,10 +167,10 @@ DATABASES = {
     },
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'django-master',
+        'NAME': os.getenv('DATABASE_NAME', 'django-master'),
         'USER': os.getenv('DATABASE_USER'),
         'PASSWORD': os.getenv('DATABASE_PASSWORD'),
-        'HOST': '127.0.0.1',
+        'HOST': os.getenv('DATABASE_HOST', '127.0.0.1'),
         'PORT': '5432',
     }
 }
@@ -187,12 +216,12 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-STATIC_ROOT = os.path.join(BASE_DIR, 'static_prod')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-STATICFILES_FINDERS = [
-    'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder'
-]
+#STATICFILES_FINDERS = [
+#    'django.contrib.staticfiles.finders.FileSystemFinder',
+#    'django.contrib.staticfiles.finders.AppDirectoriesFinder'
+#]
 
 DEFAULT_FROM_EMAIL = 'wgiersche@gmail.com'
 

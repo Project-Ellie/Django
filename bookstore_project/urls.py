@@ -28,10 +28,19 @@ urlpatterns = [
 
     path('orders', include('orders.urls')),
 
-    path('api', include('api.urls')),
+    path('api/v1/', include('api.urls')),
+
+    path('api-auth/', include('rest_framework.urls')),
 
     path('todosapi', include('todos.urls')),
 
     path('', include('pages.urls'))
     
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
+if settings.DEBUG:
+    import debug_toolbar
+    urlpatterns = [
+        path('__debug__/', include(debug_toolbar.urls)),
+    ] + urlpatterns

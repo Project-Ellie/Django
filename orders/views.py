@@ -18,7 +18,6 @@ class OrdersPageView(TemplateView):
 
 
 def charge(request):
-
     permission = Permission.objects.get(codename='special_status')
     u = request.user
     u.user_permissions.add(permission)

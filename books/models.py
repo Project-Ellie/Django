@@ -6,6 +6,14 @@ from django.urls import reverse
 
 
 class Book(models.Model):
+    """
+    https://google.com
+
+    * blabla
+
+        * blabla
+
+    """
     id = models.UUIDField(
         primary_key=True,
         default=uuid.uuid4,

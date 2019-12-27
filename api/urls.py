@@ -1,8 +1,11 @@
 from django.urls import path
-
-from .views import BookApiView
+from rest_framework_simplejwt import views as jwt_views
+from .views import BookApiView, CustomUserApiView
 
 
 urlpatterns = [
-    path('', BookApiView.as_view())
+    path('books/', BookApiView.as_view()),
+    path('users/', CustomUserApiView.as_view()),
+    path('token/', jwt_views.TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('token/refresh/', jwt_views.TokenRefreshView.as_view(), name='token_refresh')
 ]
