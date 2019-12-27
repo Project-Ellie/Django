@@ -1,3 +1,4 @@
+from django.contrib.auth import get_user_model
 from django.db import models
 from django.utils import timezone
 
@@ -9,6 +10,7 @@ class ContractualParty(models.Model):
     A legal entity (company or legal person) with a contract
     """
     legal_entity = models.CharField(max_length=256)
+    created_by = models.ForeignKey(get_user_model(), on_delete=models.PROTECT)
 
 
 class Contract(models.Model):
@@ -33,11 +35,21 @@ class Contract(models.Model):
     start_date = models.DateTimeField(default=timezone.now)
 
 
-class ContractualPartyAssociation(models.Model):
+class UserContractualPartyAssociation(models.Model):
     """
     Association of a CustomUser with the ContractualParty
     """
+    TYPE_ADMINISTRATOR='Administrator'
+    TYPE_COLLABORATOR='Collaborator'
+
+    ASSOCIATION_TYPE_CHOICES = (
+        (TYPE_ADMINISTRATOR, 'Administrator'),
+        (TYPE_COLLABORATOR, 'Collaborator')
+    )
+
     user = models.ForeignKey(CustomUser, on_delete=models.PROTECT)
     cp = models.ForeignKey(ContractualParty, on_delete=models.PROTECT)
     valid_from = models.DateTimeField(default=timezone.now)
     valid_to = models.DateTimeField(null=True)
+
+    association_type = models.CharField(max_length=32, choices=ASSOCIATION_TYPE_CHOICES)
