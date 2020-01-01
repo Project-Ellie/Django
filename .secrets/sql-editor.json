@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "cep-gke",
+  "private_key_id": "1a2c66a27ae2a0f5101aedf5574a2ef7e154772f",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDcGf6RT3OZ5/7r\n/aU6mRSyy4FhC5XK5Uar3f5Hdkp/9F7whK2NTU6pNR6N5WqtgrgPdY5D+GCmdGwo\ni+Fb6jz0JWEfWqG7bUIoC/RXL8K5Wj1sz30CFTxDBAcF0rab8EMPx/uSHGHcBEV6\n5JDd8CroNpO0FzN6mxk03EyVxjMwj0Z7UieQ7YBL3vPMCfvqI0JLAuW5ZbfbjwRc\nM6jWNBU+x7qG/lGm9+e+KmsMXAuWUc1d9NEQP9pL/ZVLazAxA1C79c155AoyyyuK\nWzuxke3f5D0ptiAWZJApau/xnWs7Z1XIDsSvpmJh9IYZyzt2Bo6ZpOAl81HJZU2g\nBR0nD3f5AgMBAAECggEANAuth5zbABS80f7reDzEiTbYBCOiKxUmLfPTcgCFw1X8\nsTEefOA/7oESFYmfPSJA9d7dYjM0X4f+H2RcSMjN2wmPusNKpTBDyYZyI7+2cu/k\nwHsb20c8NbiZFIZsCdm5cdzfHwC5HzafW1z66JAnBTwKlzY5RQ+x2S8SqQPyDNQU\nFXz6wEaQMcTkOvOin6pcGnDOcbbRO6R3sKw7Q3PwQLNmkRIciUjVNMivI3ZIGy6n\nwcwodsAq3ez2zt7QJteKWd68d5yRydbNOtRGvqnJHmfnwGwe1pV91Olra2oFYxgQ\nkDZkYq6jU7VtRL9ON77V4DR3w4wmYsKHZq3eBzh90QKBgQDx8Kbe2AOubV4e2w+e\nfm3Ab1ywdVdb173wohsN+PnTvlDITbJU7TOGmoECXFFLnBRRcwxEGfhEK190x0/n\nob9Tw8BwPTfssCJ3ICRA/ZkMdR2ol+qFEaj2CqaX40dB8D1j+Ue1xj5mbbOCIURN\nZr9ytCdB19rvlWT3CilXxKllTQKBgQDo5HNYfnqz+u58spptfTQIWFrqNb78JUow\n9r1nHUUIBUCxOp+qAcCSaAEHWncGU12qKgvyfcb5KMO2f2vdRbXJX3glcguwglXb\n86Wurpx1YKYiQBfFl/sLv/3PKcBZzxijUeAsnL1W4yTd8MDllZyvckd8LQZlKV1B\nvAv2djrXXQKBgQCW7f3rvu5s/iVdMmOICG8HQXGdU1ZwISKI31fpW4zenzdd/bpm\naKNgMTqR8m10saWrOg5I3bqXLEecXkpmwezNoKyIWGhu62JU1mRHduznbJhX+I2A\n/gddlj9fOZXWeLyThYtKxqVe2MjHQWGOt65vLBvhY3tdQuF9i4VHD5RtcQKBgDWH\nJHfHgj5Rw3THvDTEHSx52lOQjNf5XicI3xmPIampQ2g4uC/j/TXpT6s4ALlkede9\nmEdg31WvJ+SPPuR5vEGPftbkcolcO421X3RZz74uu6CNqKkSuHHH6/csenhp4BjR\nnbvDPsV0qamVR1C9ZWjx1DpXQuwHaNbN+NXp8LZFAoGAGQr944GZ4h0SQHNfItnN\nafnDLvfmocxTtzIRH3HGegi+Isyxp3kAYjWGjBm9r85RAUHCKwFe+eyBm50WIpTL\nvbWpxiEOyLrzg8kBGPnQgWpaLYTgkZaT7wCcVD8JE7QqoLxxJyG2l8IP0SqXyJ5N\naPV2Ba+w45DZktpgCIyMErA=\n-----END PRIVATE KEY-----\n",
+  "client_email": "sql-editor@cep-gke.iam.gserviceaccount.com",
+  "client_id": "102794628981318205329",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/sql-editor%40cep-gke.iam.gserviceaccount.com"
+}

@@ -1,0 +1,27 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: brokerage-platform-ingress
+  annotations:
+    kubernetes.io/ingress.global-static-ip-name: brokerage-platform-ingress-ip
+    networking.gke.io/managed-certificates: brokerage-platform-cert
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /*
+        backend:
+          serviceName: brokerage-frontend-service
+          servicePort: 80
+      - path: /dsp/*
+        backend:
+          serviceName: dsp-backend-service
+          servicePort: 80
+      - path: /ssp/*
+        backend:
+          serviceName: ssp-backend-service
+          servicePort: 80
+      - path: /adserver/*
+        backend:
+          serviceName: adserver-backend-service
+          servicePort: 80

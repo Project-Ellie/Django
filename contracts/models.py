@@ -12,6 +12,9 @@ class ContractualParty(models.Model):
     legal_entity = models.CharField(max_length=256)
     created_by = models.ForeignKey(get_user_model(), on_delete=models.PROTECT)
 
+    def __str__(self):
+        return self.legal_entity
+
 
 class Contract(models.Model):
     """
@@ -34,13 +37,16 @@ class Contract(models.Model):
                                     on_delete=models.PROTECT,)
     start_date = models.DateTimeField(default=timezone.now)
 
+    def __str__(self):
+        return "%s as %s" % (self.other_party.legal_entity, self.other_party_role)
+
 
 class UserContractualPartyAssociation(models.Model):
     """
     Association of a CustomUser with the ContractualParty
     """
-    TYPE_ADMINISTRATOR='Administrator'
-    TYPE_COLLABORATOR='Collaborator'
+    TYPE_ADMINISTRATOR = 'Administrator'
+    TYPE_COLLABORATOR = 'Collaborator'
 
     ASSOCIATION_TYPE_CHOICES = (
         (TYPE_ADMINISTRATOR, 'Administrator'),

@@ -1,0 +1,11 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: dsp-backend-service
+spec:
+  selector:
+    app: dsp-backend
+  ports:
+  - port: 80
+    targetPort: 8080
+  type: NodePort

@@ -1,7 +1,7 @@
 FROM gcr.io/google_appengine/python
 #FROM python:3.7-alpine3.9
 
-# if built with --pipenv_dev=1, pipenv install will include dev-packages
+# if built with --build-arg pipenv_dev=1, pipenv install will include dev-packages
 ARG pipenv_dev
 ENV PIPENV_DEV=$pipenv_dev
 

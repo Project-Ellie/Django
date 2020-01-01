@@ -1,0 +1,16 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: smurve-io-ingress
+  annotations:
+    kubernetes.io/ingress.global-static-ip-name: smurve-io
+spec:
+  tls:
+  - secretName: smurve.io
+  rules:
+  - host: books.smurve.io
+    http:
+      paths:
+      - backend:
+          serviceName: books-backend-service
+          servicePort: 8000

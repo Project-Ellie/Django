@@ -15,11 +15,19 @@ Including another URLconf
 """
 from django.conf.urls.static import static
 from django.contrib import admin
+from django.http import HttpResponse
 from django.urls import path, include
 
 from bookstore_project import settings
 
+def health_check(request):
+    return HttpResponse("OK")
+
+
 urlpatterns = [
+
+    path('healthz/', health_check),
+
     path('admin', admin.site.urls),
 
     path('accounts', include('allauth.urls')),

@@ -1,0 +1,65 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: books-backend-deployment
+  labels:
+    app: books-backend
+spec:
+  selector:
+    matchLabels:
+      app: books-backend
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: books-backend
+    spec:
+      containers:
+      - name: books-backend
+        image: eu.gcr.io/cep-gke/mydjango:latest
+        # This setting makes nodes pull the docker image every time before
+        # starting the pod. This is useful when debugging, but should be turned
+        # off in production.
+        imagePullPolicy: Always
+        env:
+          # [START cloudsql_secrets]
+          - name: DATABASE_USER
+            valueFrom:
+              secretKeyRef:
+                name: cloudsql
+                key: username
+          - name: DATABASE_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: cloudsql
+                key: password
+          # [END cloudsql_secrets]
+        ports:
+        - containerPort: 8000
+
+      # [START proxy_container]
+      - image: gcr.io/cloudsql-docker/gce-proxy:1.16
+        name: cloudsql-proxy
+        command: ["/cloud_sql_proxy", "--dir=/cloudsql",
+                  "-instances=cep-gke:europe-west6:django-master-instance=tcp:5432",
+                  "-credential_file=/secrets/cloudsql/sql-editor.json"]
+        volumeMounts:
+          - name: cloudsql-oauth-credentials
+            mountPath: /secrets/cloudsql
+            readOnly: true
+          - name: ssl-certs
+            mountPath: /etc/ssl/certs
+          - name: cloudsql
+            mountPath: /cloudsql
+      # [END proxy_container]
+      # [START volumes]
+      volumes:
+        - name: cloudsql-oauth-credentials
+          secret:
+            secretName: cloudsql-oauth-credentials
+        - name: ssl-certs
+          hostPath:
+            path: /etc/ssl/certs
+        - name: cloudsql
+          emptyDir:
+      # [END volumes]
