@@ -4,6 +4,7 @@ metadata:
   name: smurve-io-ingress
   annotations:
     kubernetes.io/ingress.global-static-ip-name: smurve-io
+    kubernetes.io/ingress.allow-http: false
 spec:
   tls:
   - secretName: smurve.io
