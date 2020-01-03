@@ -134,4 +134,5 @@ dmypy.json
 
 /staticfiles/
 
+.secrets
 secrets.txt
